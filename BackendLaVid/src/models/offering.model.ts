@@ -11,9 +11,11 @@ const schema = new Schema({
     amount: Number,
     planificationDate: String,
     planificationHour: String,
-    privilege: String,
+    cellplanification: [{
+        privilege: String,
+        resposible: String,
+    }],
     snack: Boolean,
-    resposible: String,
     Observations: String,
     Assistance: [{
         name: String,
@@ -33,9 +35,11 @@ export interface IOffering extends Document {
     amount: number,
     planificationDate: string,
     planificationHour: string,
-    privilege: string,
+    cellplanification: [{
+        privilege: string,
+        resposible: string,
+    }],
     snack: boolean,
-    resposible: string,
     Observations?: string,
     Assistance: [{
         name: string,
