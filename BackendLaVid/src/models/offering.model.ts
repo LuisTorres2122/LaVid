@@ -15,7 +15,7 @@ const schema = new Schema({
         privilege: String,
         resposible: String,
     }],
-    snack: Boolean,
+    snack: String,
     Observations: String,
     Assistance: [{
         name: String,
@@ -39,7 +39,7 @@ export interface IOffering extends Document {
         privilege: string,
         resposible: string,
     }],
-    snack: boolean,
+    snack: String,
     Observations?: string,
     Assistance: [{
         name: string,
