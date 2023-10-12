@@ -6,7 +6,7 @@ import CmpOfrendas from '../Componentes/CmpOfrendas';
 
 function ErpPage(prop) {
   return (
-    <div className="min-h-screen flex w-full">
+    <div className="min-h-screen flex flex-row w-full">
       <CmpSideBar />
       <div className="flex-grow">
         <Routes>

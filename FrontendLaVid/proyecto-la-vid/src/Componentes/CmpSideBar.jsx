@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function CmpSideBar() {
   return (
-    <nav className="w-72  min-h-screen flex flex-col text-2xl bg-black bg-opacity-75 text-white">
-      <div className="w-full text-left flex items-center justify-center p-5">
+    <nav className="w-52  min-h-screen flex flex-col text-2xl bg-blue-950  text-white">
+      <div className="w-full text-left flex items-center justify-center p-5 ">
         <img
           className="w-20 h-20"
           src={require(`../Imagenes/LogoIdec.png`)}
