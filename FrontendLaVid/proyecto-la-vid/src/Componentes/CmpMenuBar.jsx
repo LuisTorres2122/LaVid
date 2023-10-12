@@ -7,9 +7,10 @@ function CmpMenubar(prop) {
   const Inicio = UbicacionActual.pathname === "/";
   const QuienesSomos = UbicacionActual.pathname === "/CmpQuienesSomos";
   const Actividades = UbicacionActual.pathname === "/CmpActividades";
-  const Ofrendas = UbicacionActual.pathname === "/CmpOfrendas";
+  const Ofrendas = UbicacionActual.pathname === "/CmpReporteOfrendas";
   const Contacto = UbicacionActual.pathname === "/CmpContacto";
   const Login = UbicacionActual.pathname === "/CmpLogin";
+
   return (
     <nav className="w-full h-full p-1 bg-black bg-opacity-75 flex text-2xl text-white">
       <div className="w-1/2 text-left flex items-center">
@@ -48,7 +49,7 @@ function CmpMenubar(prop) {
           </li>
           <li>
             <Link
-              to="/CmpOfrendas"
+              to="/CmpReporteOfrendas"
               className={Ofrendas ? "underline" : "hover:underline"}
             >
               Ofrendas
