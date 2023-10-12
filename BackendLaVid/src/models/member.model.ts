@@ -7,7 +7,7 @@ const schema = new Schema({
     phone: Number,
     birthday: String,
     position: String,
-    status: Boolean,
+    estatus: String,
 });
 
 export interface IMember extends Document {
@@ -17,7 +17,7 @@ export interface IMember extends Document {
     phone?: number,
     birthday: string,
     position: string,
-    status: boolean,
+    estatus: String,
 }
 
 export default model<IMember>('Member', schema);
