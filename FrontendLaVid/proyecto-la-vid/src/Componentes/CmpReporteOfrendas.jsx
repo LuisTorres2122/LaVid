@@ -4,6 +4,26 @@ class CmpReporteOfrendas extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      privilege1: "",
+      responsable1: "",
+      privilege2: "",
+      responsable2: "",
+      privilege3: "",
+      responsable3: "",
+      privilege4: "",
+      responsable4: "",
+      privilege5: "",
+      responsable5: "",
+      name1: "",
+      position1: "",
+      name2: "",
+      position2: "",
+      name3: "",
+      position3: "",
+      name4: "",
+      position4: "",
+      name5: "",
+      position5: "",
       NuevaOfrenda: {
         leader: "",
         subleader: "",
@@ -15,20 +35,10 @@ class CmpReporteOfrendas extends Component {
         amount: "",
         planificationDate: "",
         planificationHour: "",
-        cellPlanification: [
-            {
-              privilege: "",
-              responsable: "",
-            },
-          ],
-          snack: "",
-          Observations: "",
-          Asistence: [
-            {
-              name: "",
-              position: "",
-            },
-          ],
+        cellplanification: [],
+        snack: "",
+        Observations: "",
+        Assistance: [],
         // Agrega otros campos aquí
       },
     };
@@ -44,9 +54,84 @@ class CmpReporteOfrendas extends Component {
     }));
   };
 
+  handleInputCell = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const { NuevaOfrenda } = this.state;
+    const {
+      NuevaOfrenda,
+      privilege1,
+      responsable1,
+      privilege2,
+      responsable2,
+      privilege3,
+      responsable3,
+      privilege4,
+      responsable4,
+      privilege5,
+      responsable5,
+      name1,
+      position1,
+      name2,
+      position2,
+      name3,
+      position3,
+      name4,
+      position4,
+      name5,
+      position5,
+    } = this.state;
+
+    let names = [
+      {
+        name: name1,
+        position: position1,
+      },
+      {
+        name: name2,
+        position: position2,
+      },
+      {
+        name: name3,
+        position: position3,
+      },
+      {
+        name: name4,
+        position: position4,
+      },
+      {
+        name: name5,
+        position: position5,
+      },
+    ];
+
+    let cell = [
+      {
+        privilege: privilege1,
+        resposible: responsable1,
+      },
+      {
+        privilege: privilege2,
+        resposible: responsable2,
+      },
+      {
+        privilege: privilege3,
+        resposible: responsable3,
+      },
+      {
+        privilege: privilege4,
+        resposible: responsable4,
+      },
+      {
+        privilege: privilege5,
+        resposible: responsable5,
+      },
+    ];
 
     // Define los datos a enviar en la solicitud POST
     const data = {
@@ -62,16 +147,12 @@ class CmpReporteOfrendas extends Component {
       planificationHour: NuevaOfrenda.planificationHour,
       snack: NuevaOfrenda.snack,
       Observations: NuevaOfrenda.Observations,
-      cellPlanification: NuevaOfrenda.cellPlanification.map((item) => ({
-        privilege: item.privilege,
-        responsable: item.responsable,
-      })),
-      
-      Asistence: NuevaOfrenda.Asistence, 
+      cellplanification: cell,
+      Assistance: names,
       // Agrega otros campos aquí según tus necesidades
     };
-    console.log(NuevaOfrenda.cellPlanification);
-
+    console.log(data);
+   
 
     // Realiza la solicitud POST a la API
     axios
@@ -92,21 +173,32 @@ class CmpReporteOfrendas extends Component {
             amount: "",
             planificationDate: "",
             planificationHour: "",
-            cellPlanification: [
-                {
-                  privilege: [""],
-                  responsable: [""],
-                },
-              ],
+            cellplanification: [],
             snack: "",
             Observations: "",
-            Asistence: [
-                {
-                  name: [],
-                  position: [],
-                },
-              ],
+            Assistance: [],
           },
+           privilege1: "",
+          responsable1: "",
+          privilege2: "",
+          responsable2: "",
+          privilege3: "",
+          responsable3: "",
+          privilege4: "",
+          responsable4: "",
+          privilege5: "",
+          responsable5: "",
+           name1: "",
+          position1: "",
+          name2: "",
+          position2: "",
+          name3: "",
+          position3: "",
+          name4: "",
+          position4: "",
+          name5: "",
+          position5:"",
+
         });
       })
       .catch((error) => {
@@ -116,7 +208,29 @@ class CmpReporteOfrendas extends Component {
       });
   };
   render() {
-    const { NuevaOfrenda } = this.state;
+    const {
+      NuevaOfrenda,
+      privilege1,
+      responsable1,
+      privilege2,
+      responsable2,
+      privilege3,
+      responsable3,
+      privilege4,
+      responsable4,
+      privilege5,
+      responsable5,
+      name1,
+      position1,
+      name2,
+      position2,
+      name3,
+      position3,
+      name4,
+      position4,
+      name5,
+      position5,
+    } = this.state;
     return (
       <div className="flex flex-col min-h-screen">
         <div className="text-black">
@@ -227,160 +341,196 @@ class CmpReporteOfrendas extends Component {
               />
             </div>
             <div className="flex flex-wrap">
-  <label className="w-full m-5 text-white">Programa de célula</label>
-  <label className="w-1/2 text-white">Privilegio</label>
-  <label className="w-1/2 text-white">Responsable</label>
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Privilegio"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Encargado"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Alabanza"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    placeholder="Encargado"
-    onChange={this.handleInputChange}
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Dinámica"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Encargado"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Predica"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Encargado"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Ofrenda y oración final"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    name="cellPlanification"
-    value={NuevaOfrenda.cellPlanification}
-    onChange={this.handleInputChange}
-    placeholder="Encargado"
-    className="w-1/2 border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    id="snack"
-    name="snack"
-    value={NuevaOfrenda.snack}
-    onChange={this.handleInputChange}
-    placeholder="Refacción"
-    className="w-full border border-opacity-75 border-black"
-  />
-  <input
-    type="text"
-    id="Observations"
-    name="Observations"
-    value={NuevaOfrenda.Observations}
-    onChange={this.handleInputChange}
-    placeholder="Observaciones"
-    className="w-full border border-opacity-75 border-black"
-  />
-</div>
+              <label className="w-full m-5 text-white">
+                Programa de célula
+              </label>
+              <label className="w-1/2 text-white">Privilegio</label>
+              <label className="w-1/2 text-white">Responsable</label>
+              <input
+                type="text"
+                name="privilege1"
+                value={privilege1}
+                onChange={this.handleInputCell}
+                placeholder="Privilegio"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="responsable1"
+                value={responsable1}
+                onChange={this.handleInputCell}
+                placeholder="Encargado"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="privilege2"
+                value={privilege2}
+                onChange={this.handleInputCell}
+                placeholder="Alabanza"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="responsable2"
+                value={responsable2}
+                placeholder="Encargado"
+                onChange={this.handleInputCell}
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="privilege3"
+                value={privilege3}
+                onChange={this.handleInputCell}
+                placeholder="Dinámica"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="responsable3"
+                value={responsable3}
+                onChange={this.handleInputCell}
+                placeholder="Encargado"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="privilege4"
+                value={privilege4}
+                onChange={this.handleInputCell}
+                placeholder="Predica"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="responsable4"
+                value={responsable4}
+                onChange={this.handleInputCell}
+                placeholder="Encargado"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="privilege5"
+                value={privilege5}
+                onChange={this.handleInputCell}
+                placeholder="Ofrenda y oración final"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="responsable5"
+                value={responsable5}
+                onChange={this.handleInputCell}
+                placeholder="Encargado"
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                id="snack"
+                name="snack"
+                value={NuevaOfrenda.snack}
+                onChange={this.handleInputChange}
+                placeholder="Refacción"
+                className="w-full border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                id="Observations"
+                name="Observations"
+                value={NuevaOfrenda.Observations}
+                onChange={this.handleInputChange}
+                placeholder="Observaciones"
+                className="w-full border border-opacity-75 border-black"
+              />
+            </div>
             <div className="flex flex-wrap">
-              <label className="w-full m-5 text-white">Asistencia a la célula</label>
+              <label className="w-full m-5 text-white">
+                Asistencia a la célula
+              </label>
               <label className="w-1/2 text-white">Nombre</label>
-              <label className="w-1/2 text-white">Líder/Sublíder/Ayuda/Invitado</label>
+              <label className="w-1/2 text-white">
+                Líder/Sublíder/Ayuda/Invitado
+              </label>
               <input
                 type="text"
+                placeholder=""
+                name="name1"
+                value={name1}
+                onChange={this.handleInputCell}
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                placeholder=""
+                name="position1"
+                value={position1}
+                onChange={this.handleInputCell}
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                placeholder=""
+                name="name2"
+                value={name2}
+                onChange={this.handleInputCell}
+                className="w-1/2 border border-opacity-75 border-black"
+              />
+              <input
+                type="text"
+                name="position2"
+                value={position2}
+                onChange={this.handleInputCell}
                 placeholder=""
                 className="w-1/2 border border-opacity-75 border-black"
               />
               <input
                 type="text"
                 placeholder=""
+                name="name3"
+                value={name3}
+                onChange={this.handleInputCell}
                 className="w-1/2 border border-opacity-75 border-black"
               />
               <input
                 type="text"
                 placeholder=""
+                name="position3"
+                value={position3}
+                onChange={this.handleInputCell}
                 className="w-1/2 border border-opacity-75 border-black"
               />
               <input
                 type="text"
                 placeholder=""
+                name="name4"
+                value={name4}
+                onChange={this.handleInputCell}
                 className="w-1/2 border border-opacity-75 border-black"
               />
               <input
                 type="text"
                 placeholder=""
+                name="position4"
+                value={position4}
+                onChange={this.handleInputCell}
                 className="w-1/2 border border-opacity-75 border-black"
               />
               <input
                 type="text"
                 placeholder=""
+                name="name5"
+                value={name5}
+                onChange={this.handleInputCell}
                 className="w-1/2 border border-opacity-75 border-black"
               />
               <input
                 type="text"
                 placeholder=""
-                className="w-1/2 border border-opacity-75 border-black"
-              />
-              <input
-                type="text"
-                placeholder=""
-                className="w-1/2 border border-opacity-75 border-black"
-              />
-              <input
-                type="text"
-                placeholder=""
-                className="w-1/2 border border-opacity-75 border-black"
-              />
-              <input
-                type="text"
-                placeholder=""
+                name="position5"
+                value={position5}
+                onChange={this.handleInputCell}
                 className="w-1/2 border border-opacity-75 border-black"
               />
             </div>
