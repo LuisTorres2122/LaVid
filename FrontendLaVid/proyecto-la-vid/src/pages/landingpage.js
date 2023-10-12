@@ -4,11 +4,11 @@ import CmpMenubar from '../Componentes/CmpMenuBar';
 import CmpInicio from '../Componentes/CmpInicio';
 import CmpQuienesSomos from '../Componentes/CmpQuienesSomos';
 import CmpActividades from '../Componentes/CmpActividades';
-import CmpOfrendas from '../Componentes/CmpOfrendas';
 import CmpContacto from '../Componentes/CmpContacto';
 import CmpLogin from '../Componentes/CmpLogin';
 import CmpFooter from '../Componentes/CmpFooter';
 import fondo2 from '../Imagenes/fondo2.jpg';
+import CmpReporteOfrendas from '../Componentes/CmpReporteOfrendas';
 
 function LandingPage() {
   return (
@@ -18,7 +18,7 @@ function LandingPage() {
         <Route path="/" element={<CmpInicio letras="LetrasIdec" />} />
         <Route path="/CmpQuienesSomos" element={<CmpQuienesSomos />} />
         <Route path="/CmpActividades" element={<CmpActividades />} />
-        <Route path="/CmpOfrendas" element={<CmpOfrendas />} />
+        <Route path="/CmpReporteOfrendas" element={<CmpReporteOfrendas />} />
         <Route path="/CmpContacto" element={<CmpContacto icono="iconoContacto" />} />
         <Route path="/CmpLogin" element={<CmpLogin />} />
       </Routes>
