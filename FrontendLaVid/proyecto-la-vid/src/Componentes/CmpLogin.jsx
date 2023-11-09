@@ -1,7 +1,7 @@
 import React from "react";
-import { Redirect, Component } from "react";
+import { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 
 class CmpLogin extends Component {
   //Declarando hooks
@@ -11,6 +11,7 @@ class CmpLogin extends Component {
     this.state = {
       usuario: "",
       contra: "",
+      auth: 1,
     };
   }
 
@@ -22,11 +23,19 @@ class CmpLogin extends Component {
     };
 
     axios
-      .post(`http://localhost:4000/api/Generaloffering`, data)
+      .post(`http://localhost:4000/api/autenticate`, data)
       .then((res) => {
-        console.log("Bienvenido" + usuario);
-        this.setState({ redireccionar: true });
-        alert("exito");
+          console.log(res);
+        if(res.data.authenticated){
+          console.log("Bienvenido" + usuario);
+          
+          window.location.href = "/ERP";
+        }else{
+          alert("Credenciales Incorrectas");
+          
+        }
+    
+        
       })
       .catch((err) => {
         console.log(err);
@@ -53,9 +62,7 @@ class CmpLogin extends Component {
   render() {
     const { usuario, contra } = this.state;
 
-    if (this.state.redireccionar) {
-      return <Link to="/Erp" />; // Redireccionar a la nueva ruta
-    }
+   
 
     return (
       <div className="h-screen">
@@ -68,7 +75,7 @@ class CmpLogin extends Component {
           <h2 className=" text-white text-2xl font-semibold text-center mb-4">
             Iniciar Sesión
           </h2>
-          <form onSubmit={this.logIn}>
+          <form >
             <div className="mb-4">
               <label
                 htmlFor="username"
@@ -106,13 +113,16 @@ class CmpLogin extends Component {
               />
             </div>
             <div className="flex items-center justify-between">
+              
               <button
                 id="authenticateUser"
-                type="submit"
+                onClick={this.logIn}
+                type="button"
                 className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
               >
                 Enviar
               </button>
+           
             </div>
           </form>
         </div>
